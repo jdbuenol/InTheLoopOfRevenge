@@ -14,7 +14,16 @@ var rooms : Array = []
 #this executes at the start of the scene
 func _ready():
 	randomize()
+	$cursor.playing = true
 	build_level()
+	$cursor.modulate = Color(randf(), randf(), randf())
+	$player.modulate = Color(randf(), randf(), randf())
+	var r : float = randf()
+	var g : float = randf()
+	var b : float = randf()
+	for x in get_children():
+		if x is TileMap:
+			x.modulate = Color(r, g, b)
 
 #This function creates the level
 func build_level():
@@ -189,3 +198,12 @@ func apply_borders():
 			$corner3.set_cell(tile.x, tile.y, 0)
 		if $TileMap.get_cell(tile.x - 1, tile.y - 1) == Tile.ground:
 			$corner4.set_cell(tile.x, tile.y, 0)
+
+#This executes every frame
+func _physics_process(_delta):
+	$cursor.global_position = get_global_mouse_position()
+
+
+func _on_Button_pressed():
+# warning-ignore:return_value_discarded
+	get_tree().reload_current_scene()
