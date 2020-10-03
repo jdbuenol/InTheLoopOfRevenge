@@ -30,3 +30,6 @@ limit_left = 0
 limit_top = 0
 limit_right = 3200
 limit_bottom = 3200
+
+[node name="Position2D" type="Position2D" parent="."]
+position = Vector2( 2.53666, -7.84184 )

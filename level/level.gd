@@ -1,10 +1,12 @@
 extends Node2D
 
 const LEVEL_SIZE : int = 50
-const MIN_ROOM_DIMENSION : int = 5
-const MAX_ROOM_DIMENSION : int = 8
+const MIN_ROOM_DIMENSION : int = 8
+const MAX_ROOM_DIMENSION : int = 11
 const NUM_ROOMS : int = 6
 const TILE_SIZE : int = 64
+
+const WALL : PackedScene = preload("res://environment/wall.tscn")
 
 enum Tile {ground, corner1, corner2, corner3, corner4, wall_down, wall_left, wall_right, wall_up, wall}
 
@@ -182,6 +184,9 @@ func apply_borders():
 				if $TileMap.get_cell(x + 1, y + 1) != Tile.ground and not Vector2(x + 1, y + 1) in check_tile:
 					check_tile.append(Vector2(x + 1, y + 1))
 	for tile in check_tile:
+		var wall : StaticBody2D = WALL.instance()
+		add_child(wall)
+		wall.global_position = Vector2(tile.x, tile.y) * 64
 		if $TileMap.get_cell(tile.x, tile.y + 1) == Tile.ground:
 			$wallup.set_cell(tile.x, tile.y, 0)
 		if $TileMap.get_cell(tile.x + 1, tile.y) == Tile.ground:

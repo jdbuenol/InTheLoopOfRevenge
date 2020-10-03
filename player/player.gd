@@ -2,6 +2,8 @@ extends KinematicBody2D
 
 var velocity : Vector2 = Vector2()
 
+const BULLET : PackedScene = preload("res://player/bullet.tscn")
+
 const SPEED : int = 500
 
 #This converts from radians to Degrees
@@ -30,3 +32,8 @@ func _physics_process(_delta):
 	velocity = velocity.normalized() * SPEED
 	velocity = move_and_slide(velocity)
 	rotation_degrees = 180-rad_to_deg(atan2(mouse_pos.x - global_position.x, mouse_pos.y - global_position.y))
+	if Input.is_mouse_button_pressed(1):
+		var bullet : Area2D = BULLET.instance()
+		get_parent().add_child(bullet)
+		bullet.global_position = $Position2D.global_position
+		bullet.set_movement(mouse_pos.x - global_position.x, mouse_pos.y - global_position.y)
