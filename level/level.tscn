@@ -490,13 +490,34 @@ frames = SubResource( 25 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Button" type="Button" parent="CanvasLayer"]
-margin_left = 13.3484
-margin_top = 16.0181
-margin_right = 106.348
-margin_bottom = 64.0181
-text = "RESET"
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+margin_left = 842.857
+margin_top = -3.36737
+margin_right = 1025.86
+margin_bottom = 36.6326
+color = Color( 0, 0, 0, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_Button_pressed"]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+margin_left = 853.612
+margin_top = 11.0
+margin_right = 1027.61
+margin_bottom = 59.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "THERE'S XX ENEMIES LEFT"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button2" type="Button" parent="CanvasLayer"]
+margin_left = 842.877
+margin_top = 21.7145
+margin_right = 1023.88
+margin_bottom = 65.7145
+text = "NEXT LEVEL"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="CanvasLayer/Button2" to="." method="_on_Button2_pressed"]

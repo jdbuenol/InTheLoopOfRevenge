@@ -7,11 +7,13 @@ const NUM_ROOMS : int = 6
 const TILE_SIZE : int = 64
 
 const WALL : PackedScene = preload("res://environment/wall.tscn")
+const ENEMY : PackedScene = preload("res://enemy/enemy.tscn")
 
 enum Tile {ground, corner1, corner2, corner3, corner4, wall_down, wall_left, wall_right, wall_up, wall}
 
 var current_level : int = 0
 var rooms : Array = []
+var min_enemies : int = 1
 
 #this executes at the start of the scene
 func _ready():
@@ -29,7 +31,14 @@ func _ready():
 
 #This function creates the level
 func build_level():
-	$TileMap.clear()
+	$CanvasLayer/Button2.visible = false
+	$CanvasLayer/ColorRect.visible = true
+	$CanvasLayer/Label.visible = true
+	for x in get_children():
+		if x is TileMap:
+			x.clear()
+		elif "enemy" in x.name or x is StaticBody2D or x is Area2D:
+			x.queue_free()
 	rooms.clear()
 	for x in range(LEVEL_SIZE):
 		for y in range(LEVEL_SIZE):
@@ -42,6 +51,7 @@ func build_level():
 	connect_rooms()
 	apply_borders()
 	place_player()
+	place_enemies()
 
 #This function generates a room
 func add_room(free_regions : Array):
@@ -207,8 +217,41 @@ func apply_borders():
 #This executes every frame
 func _physics_process(_delta):
 	$cursor.global_position = get_global_mouse_position()
+	var enemy_counter : int = 0
+	for x in get_children():
+		if "enemy" in x.name and ! x.dead:
+			enemy_counter += 1
+			x.velocity = get_movement_intention(x) * x.speed
+	$CanvasLayer/Label.text = str(enemy_counter) + (" enemy left." if enemy_counter == 1 else " enemies left.")
+	if enemy_counter == 0:
+		$CanvasLayer/Button2.visible = true
+		$CanvasLayer/ColorRect.visible = false
+		$CanvasLayer/Label.visible = false
 
+#This function gets the movement intention of an enemy
+func get_movement_intention(enemy : KinematicBody2D) -> Vector2:
+	var mov_int : Vector2 = Vector2()
+	var dist_player : float = abs(enemy.global_position.x - $player.global_position.x) + abs(enemy.global_position.y - $player.global_position.y)
+	if dist_player < 500 and dist_player > 100:
+		mov_int = Vector2($player.global_position.x - enemy.global_position.x, $player.global_position.y - enemy.global_position.y)
+	if dist_player < 500:
+		enemy.rotation_degrees = 180 - rad2deg(atan2($player.global_position.x - enemy.global_position.x, $player.global_position.y - enemy.global_position.y))
+		enemy.shooting = true
+		enemy.dir_player = Vector2($player.global_position.x - enemy.global_position.x, $player.global_position.y - enemy.global_position.y)
+	return mov_int.normalized()
 
-func _on_Button_pressed():
-# warning-ignore:return_value_discarded
-	get_tree().reload_current_scene()
+#This function places the enemies
+func place_enemies():
+	for x in range(1, rooms.size()):
+		var spawn_room : Rect2 = rooms[x]
+		for _y in range(min_enemies + randi() % 3):
+			var enemy : KinematicBody2D = ENEMY.instance()
+			add_child(enemy)
+			var enemy_x : int = int(spawn_room.position.x + 1 + randi() % int(spawn_room.size.x - 2))
+			var enemy_y : int = int(spawn_room.position.y + 1 + randi() % int(spawn_room.size.y - 2))
+			enemy.global_position = Vector2(enemy_x, enemy_y) * TILE_SIZE
+
+#Build another level
+func _on_Button2_pressed():
+	min_enemies += 1
+	build_level()
