@@ -5,6 +5,7 @@ var shooting : bool = false
 var dead : bool = false
 
 const BULLET : PackedScene = preload("res://player/bullet.tscn")
+const LASER : PackedScene = preload("res://SoundFX/laser.tscn")
 
 const SPEED : int = 500
 
@@ -35,6 +36,7 @@ func _physics_process(_delta):
 		velocity = move_and_slide(velocity)
 		rotation_degrees = 180-rad_to_deg(atan2(mouse_pos.x - global_position.x, mouse_pos.y - global_position.y))
 		if Input.is_mouse_button_pressed(1) and ! shooting:
+			get_parent().add_child(LASER.instance())
 			shooting = true
 			$shootTimer.start()
 			var bullet : Area2D = BULLET.instance()

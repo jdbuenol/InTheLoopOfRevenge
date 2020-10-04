@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=2]
+[gd_scene load_steps=49 format=2]
 
 [ext_resource path="res://assets/tiles/wall_corner_4.png" type="Texture" id=1]
 [ext_resource path="res://assets/tiles/wall_down.png" type="Texture" id=2]
@@ -21,6 +21,7 @@
 [ext_resource path="res://assets/tiles/o_walldown.png" type="Texture" id=19]
 [ext_resource path="res://assets/tiles/o_wallleft.png" type="Texture" id=20]
 [ext_resource path="res://assets/cursor/cursor.png" type="Texture" id=21]
+[ext_resource path="res://assets/fonts/BlackOpsOne-Regular.ttf" type="DynamicFontData" id=22]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -414,6 +415,9 @@ animations = [ {
 "speed": 12.0
 } ]
 
+[sub_resource type="DynamicFont" id=26]
+font_data = ExtResource( 22 )
+
 [node name="level" type="Node2D"]
 script = ExtResource( 10 )
 
@@ -505,6 +509,7 @@ margin_left = 853.612
 margin_top = 11.0
 margin_right = 1027.61
 margin_bottom = 59.0
+custom_fonts/font = SubResource( 26 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "THERE'S XX ENEMIES LEFT"
 __meta__ = {
@@ -520,4 +525,7 @@ text = "NEXT LEVEL"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 [connection signal="pressed" from="CanvasLayer/Button2" to="." method="_on_Button2_pressed"]
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_AudioStreamPlayer_finished"]

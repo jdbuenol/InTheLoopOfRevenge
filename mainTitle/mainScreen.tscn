@@ -1,0 +1,434 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://assets/fonts/BlackOpsOne-Regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://mainTitle/mainScreen.gd" type="Script" id=2]
+[ext_resource path="res://assets/music/main_screen.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/cursor/cursor.png" type="Texture" id=4]
+
+[sub_resource type="Animation" id=1]
+resource_name = "intro"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("RichTextLabel:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 90, 90 ), Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("RichTextLabel:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -310.135, -664.416 ), Vector2( 493.204, 281.1 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "intro2"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("RichTextLabel2:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 90, 90 ), Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("RichTextLabel2:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -945.853, -593.781 ), Vector2( 493.105, 263.186 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "intro3"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("RichTextLabel3:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 100, 100 ), Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("RichTextLabel3:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -1703.38, -724.814 ), Vector2( 482.95, 253.99 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "intro4"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("RichTextLabel4:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 100, 100 ), Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("RichTextLabel4:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -568.037, -712.241 ), Vector2( 491.493, 266.563 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "intro5"
+tracks/0/type = "value"
+tracks/0/path = NodePath("RichTextLabel5:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 70, 70 ), Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("RichTextLabel5:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -2123.41, -405.366 ), Vector2( 421.278, 259.121 ) ]
+}
+
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=7]
+font_data = ExtResource( 1 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 4 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 4 )
+region = Rect2( 32, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 16, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 4 )
+region = Rect2( 16, 16, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 4 )
+region = Rect2( 32, 16, 16, 16 )
+
+[sub_resource type="SpriteFrames" id=14]
+animations = [ {
+"frames": [ SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ) ],
+"loop": true,
+"name": "default",
+"speed": 12.0
+} ]
+
+[node name="mainScreen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -2.37842
+margin_bottom = -2.37842
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.701961, 0.364706, 0.239216, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/intro = SubResource( 1 )
+anims/intro2 = SubResource( 3 )
+anims/intro3 = SubResource( 4 )
+anims/intro4 = SubResource( 5 )
+anims/intro5 = SubResource( 6 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+visible = false
+margin_left = -149.467
+margin_top = -475.313
+margin_right = -90.4673
+margin_bottom = -432.313
+rect_scale = Vector2( 72.2, 72.2 )
+custom_fonts/normal_font = SubResource( 2 )
+custom_colors/default_color = Color( 0.576471, 0.262745, 0.317647, 1 )
+bbcode_enabled = true
+bbcode_text = "[wave]IN[/wave]"
+text = "IN"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+visible = false
+margin_left = 430.808
+margin_top = 255.329
+margin_right = 489.808
+margin_bottom = 298.329
+custom_fonts/normal_font = SubResource( 2 )
+custom_colors/default_color = Color( 0.576471, 0.262745, 0.317647, 1 )
+bbcode_enabled = true
+bbcode_text = "[wave]THE[/wave]"
+text = "THE"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="."]
+visible = false
+margin_left = 482.95
+margin_top = 253.99
+margin_right = 541.95
+margin_bottom = 296.99
+custom_fonts/normal_font = SubResource( 2 )
+custom_colors/default_color = Color( 0.576471, 0.262745, 0.317647, 1 )
+bbcode_enabled = true
+bbcode_text = "[wave]LOOP"
+text = "LOOP"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel4" type="RichTextLabel" parent="."]
+visible = false
+margin_left = 491.493
+margin_top = 266.563
+margin_right = 550.493
+margin_bottom = 309.563
+custom_fonts/normal_font = SubResource( 2 )
+custom_colors/default_color = Color( 0.576471, 0.262745, 0.317647, 1 )
+bbcode_enabled = true
+bbcode_text = "[wave]OF"
+text = "OF"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel5" type="RichTextLabel" parent="."]
+visible = false
+margin_left = 421.278
+margin_top = 259.121
+margin_right = 507.278
+margin_bottom = 302.121
+custom_fonts/normal_font = SubResource( 2 )
+custom_colors/default_color = Color( 0.576471, 0.262745, 0.317647, 1 )
+bbcode_enabled = true
+bbcode_text = "[wave]REVENGE"
+text = "REVENGE"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel6" type="RichTextLabel" parent="."]
+visible = false
+margin_left = 415.0
+margin_top = -7.0
+margin_right = 439.0
+margin_bottom = 13.0
+rect_scale = Vector2( 5, 5 )
+custom_fonts/normal_font = SubResource( 2 )
+custom_colors/default_color = Color( 0.576471, 0.262745, 0.317647, 1 )
+bbcode_enabled = true
+bbcode_text = "[wave]IN"
+text = "IN"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel7" type="RichTextLabel" parent="."]
+visible = false
+margin_left = 451.147
+margin_top = 61.9474
+margin_right = 491.147
+margin_bottom = 81.9474
+rect_scale = Vector2( 5, 5 )
+custom_fonts/normal_font = SubResource( 2 )
+custom_colors/default_color = Color( 0.576471, 0.262745, 0.317647, 1 )
+bbcode_enabled = true
+bbcode_text = "[wave]THE"
+text = "THE"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel8" type="RichTextLabel" parent="."]
+visible = false
+margin_left = 303.936
+margin_top = 129.509
+margin_right = 350.936
+margin_bottom = 149.509
+rect_scale = Vector2( 5, 5 )
+custom_fonts/normal_font = SubResource( 2 )
+custom_colors/default_color = Color( 0.576471, 0.262745, 0.317647, 1 )
+bbcode_enabled = true
+bbcode_text = "[wave]LOOP"
+text = "LOOP"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel9" type="RichTextLabel" parent="."]
+visible = false
+margin_left = 492.722
+margin_top = 190.939
+margin_right = 539.722
+margin_bottom = 210.939
+rect_scale = Vector2( 5, 5 )
+custom_fonts/normal_font = SubResource( 2 )
+custom_colors/default_color = Color( 0.576471, 0.262745, 0.317647, 1 )
+bbcode_enabled = true
+bbcode_text = "[wave]OF"
+text = "OF"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel10" type="RichTextLabel" parent="."]
+visible = false
+margin_left = 292.078
+margin_top = 268.282
+margin_right = 379.078
+margin_bottom = 288.282
+rect_scale = Vector2( 5, 5 )
+custom_fonts/normal_font = SubResource( 2 )
+custom_colors/default_color = Color( 0.576471, 0.262745, 0.317647, 1 )
+bbcode_enabled = true
+bbcode_text = "[wave]REVENGE"
+text = "REVENGE"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+visible = false
+anchor_top = 0.00235697
+anchor_bottom = 0.00235697
+margin_left = 273.106
+margin_top = 402.13
+margin_right = 507.106
+margin_bottom = 426.13
+rect_scale = Vector2( 2, 2 )
+custom_fonts/font = SubResource( 7 )
+custom_colors/font_color = Color( 0.952941, 0.686275, 0.352941, 1 )
+text = "CLICK ANYWHERE TO START"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="."]
+visible = false
+anchor_top = 0.00235697
+anchor_bottom = 0.00235697
+margin_left = 325.326
+margin_top = 464.0
+margin_right = 514.326
+margin_bottom = 488.0
+rect_scale = Vector2( 2, 2 )
+custom_fonts/font = SubResource( 7 )
+custom_colors/font_color = Color( 0.952941, 0.686275, 0.352941, 1 )
+text = "PRESS C FOR CREDITS"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label3" type="Label" parent="."]
+visible = false
+anchor_top = 0.00235697
+anchor_bottom = 0.00235697
+margin_left = 352.657
+margin_top = 531.586
+margin_right = 515.657
+margin_bottom = 555.586
+rect_scale = Vector2( 2, 2 )
+custom_fonts/font = SubResource( 7 )
+custom_colors/font_color = Color( 0.952941, 0.686275, 0.352941, 1 )
+text = "PRESS ESC TO EXIT"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = -10.0
+autoplay = true
+
+[node name="cursor" type="AnimatedSprite" parent="."]
+scale = Vector2( 4, 4 )
+z_index = 1
+frames = SubResource( 14 )
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_AudioStreamPlayer_finished"]

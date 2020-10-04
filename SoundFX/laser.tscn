@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/fx/Laser_Shoot.wav" type="AudioStream" id=1]
+[ext_resource path="res://SoundFX/laser.gd" type="Script" id=2]
+
+[node name="laser" type="AudioStreamPlayer"]
+stream = ExtResource( 1 )
+volume_db = -15.0
+autoplay = true
+script = ExtResource( 2 )
+[connection signal="finished" from="." to="." method="_on_laser_finished"]

@@ -11,6 +11,8 @@ const ENEMY : PackedScene = preload("res://enemy/enemy.tscn")
 
 enum Tile {ground, corner1, corner2, corner3, corner4, wall_down, wall_left, wall_right, wall_up, wall}
 
+var music : Array = [preload("res://assets/music/0.wav"), preload("res://assets/music/1.wav"), preload("res://assets/music/2.wav"),
+preload("res://assets/music/3.wav"), preload("res://assets/music/4.wav"), preload("res://assets/music/5.wav"), preload("res://assets/music/6.wav"), preload("res://assets/music/7.wav")]
 var current_level : int = 0
 var rooms : Array = []
 var min_enemies : int = 1
@@ -20,6 +22,9 @@ func _ready():
 	randomize()
 	$cursor.playing = true
 	build_level()
+
+#This function creates the level
+func build_level():
 	$cursor.modulate = Color(randf(), randf(), randf())
 	$player.modulate = Color(randf(), randf(), randf())
 	var r : float = randf()
@@ -28,9 +33,8 @@ func _ready():
 	for x in get_children():
 		if x is TileMap:
 			x.modulate = Color(r, g, b)
-
-#This function creates the level
-func build_level():
+	$AudioStreamPlayer.stream = music[randi() % music.size()]
+	$AudioStreamPlayer.play()
 	$CanvasLayer/Button2.visible = false
 	$CanvasLayer/ColorRect.visible = true
 	$CanvasLayer/Label.visible = true
@@ -255,3 +259,7 @@ func place_enemies():
 func _on_Button2_pressed():
 	min_enemies += 1
 	build_level()
+
+#Replay the song
+func _on_AudioStreamPlayer_finished():
+	$AudioStreamPlayer.play()
