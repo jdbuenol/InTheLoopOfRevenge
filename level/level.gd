@@ -10,6 +10,7 @@ const GAME_OVER : PackedScene = preload("res://mainTitle/GameOver.tscn")
 const WALL : PackedScene = preload("res://environment/wall.tscn")
 const ENEMY : PackedScene = preload("res://enemy/enemy.tscn")
 const REVENGE : PackedScene = preload("res://mainTitle/revenge.tscn")
+const PAUSE : PackedScene = preload("res://mainTitle/pause.tscn")
 
 enum Tile {ground, corner1, corner2, corner3, corner4, wall_down, wall_left, wall_right, wall_up, wall}
 
@@ -246,7 +247,8 @@ func apply_borders():
 func _physics_process(_delta):
 	if ! dead:
 		if Input.is_action_just_pressed("pause"):
-			pass
+			add_child(PAUSE.instance())
+			get_tree().paused = true
 		$cursor.global_position = get_global_mouse_position()
 		var enemy_counter : int = 0
 		for x in get_children():
@@ -307,7 +309,7 @@ func revenge():
 		current_dead = current_victim
 		current_victim = current_avenger
 		current_avenger = names[randi() % names.size()]
-	current_revenge.get_node("CanvasLayer/Label").text = "You are " + current_avenger + "\n" + current_victim + " killed " + current_dead + ", your "+ relations[randi() % relations.size()] +".\nTake revenge of him!"
+	current_revenge.get_node("CanvasLayer/Label").text = "You are " + current_avenger + ".\n" + current_victim + " killed " + current_dead + ", your "+ relations[randi() % relations.size()] +".\nTake revenge of him!"
 	$CanvasLayer/ven.text = "Kill " + current_victim + " and his band"
 
 #increase the score in one

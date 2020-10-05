@@ -27,6 +27,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 		elif hi_score.open("user://score.save", File.READ) == 0:
 			$Label4.text = "Hi-score: " + hi_score.get_line()
 			$Label4.visible = true
+			hi_score.close()
 	else:
 		help_animation(int(anim_name[-1]) + 1)
 

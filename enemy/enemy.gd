@@ -33,7 +33,7 @@ func _on_reloadTimer_timeout():
 #Die
 func death():
 	get_parent().up_score()
-	z_index -= 1
+	z_index = -1
 	$CollisionShape2D.queue_free()
 	$reloadTimer.queue_free()
 	dead = true

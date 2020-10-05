@@ -153,6 +153,7 @@ func _on_shootTimer_timeout():
 
 #Die
 func death():
+	high_score()
 	$CollisionShape2D.queue_free()
 	$shootTimer.queue_free()
 	dead = true
@@ -178,3 +179,15 @@ func fire_rate_support(wait_time : float):
 	get_parent().add_child(bullet)
 	bullet.global_position = $Position2D.global_position
 	bullet.set_movement(get_global_mouse_position() - global_position)
+
+#Checks and updates the high schore
+func high_score():
+	var hi_score : File = File.new()
+	if ! hi_score.file_exists("user://score.save") and hi_score.open("user://score.save", File.WRITE) == 0:
+		hi_score.store_line(str(get_parent().score))
+	elif hi_score.open("user://score.save", File.READ) == 0:
+		var current_hi : int = int(hi_score.get_line())
+		hi_score.close()
+		if get_parent().score > current_hi and hi_score.open("user://score.save", File.WRITE) == 0:
+			hi_score.store_line(str(get_parent().score))
+	hi_score.close()
