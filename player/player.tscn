@@ -64,6 +64,21 @@ position = Vector2( 0, -7.84184 )
 [node name="Position2D3" type="Position2D" parent="."]
 position = Vector2( 5.95821, -7.84184 )
 
+[node name="spread3" type="Position2D" parent="."]
+position = Vector2( 29.9998, -126.282 )
+
+[node name="spread1" type="Position2D" parent="."]
+position = Vector2( -0.0834274, -140.778 )
+
+[node name="spread2" type="Position2D" parent="."]
+position = Vector2( -27.307, -126.282 )
+
+[node name="spread4" type="Position2D" parent="."]
+position = Vector2( -57.0055, -105.776 )
+
+[node name="spread5" type="Position2D" parent="."]
+position = Vector2( 58.2529, -105.776 )
+
 [node name="shootTimer" type="Timer" parent="."]
 wait_time = 0.2
 one_shot = true

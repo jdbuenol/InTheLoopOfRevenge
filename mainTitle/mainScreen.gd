@@ -18,9 +18,15 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 		$RichTextLabel5.visible = false
 		for x in range(6, 11):
 			get_node("RichTextLabel" + str(x)).visible = true
-			$Label.visible = true
-			$Label2.visible = true
-			$Label3.visible = true
+		$Label.visible = true
+		$Label2.visible = true
+		$Label3.visible = true
+		var hi_score : File = File.new()
+		if ! hi_score.file_exists("user://score.save"):
+			pass
+		elif hi_score.open("user://score.save", File.READ) == 0:
+			$Label4.text = "Hi-score: " + hi_score.get_line()
+			$Label4.visible = true
 	else:
 		help_animation(int(anim_name[-1]) + 1)
 

@@ -48,7 +48,7 @@ func _physics_process(_delta):
 					var bullet : Area2D = BULLET.instance()
 					get_parent().add_child(bullet)
 					bullet.global_position = $Position2D.global_position
-					bullet.set_movement(mouse_pos.x - global_position.x, mouse_pos.y - global_position.y)
+					bullet.set_movement(mouse_pos - global_position)
 				weapon.helix:
 					normal_weapons_support()
 					for x in range(2):
@@ -56,10 +56,10 @@ func _physics_process(_delta):
 						get_parent().add_child(bullet)
 						if x == 0:
 							bullet.global_position = $Position2D.global_position
-							bullet.set_movement(mouse_pos.x - global_position.x, mouse_pos.y - global_position.y)
+							bullet.set_movement(mouse_pos - global_position)
 						else:
 							bullet.global_position = $Position2D2.global_position
-							bullet.set_movement(mouse_pos.x - global_position.x + $Position2D.global_position.x - $Position2D2.global_position.x, mouse_pos.y - global_position.y + $Position2D.global_position.y - $Position2D2.global_position.y)
+							bullet.set_movement(mouse_pos - global_position + $Position2D.global_position - $Position2D2.global_position)
 				weapon.double:
 					normal_weapons_support()
 					for x in range(2):
@@ -67,10 +67,84 @@ func _physics_process(_delta):
 						get_parent().add_child(bullet)
 						if x == 0:
 							bullet.global_position = $Position2D.global_position
-							bullet.set_movement(mouse_pos.x - global_position.x, mouse_pos.y - global_position.y)
+							bullet.set_movement(mouse_pos - global_position)
 						else:
 							bullet.global_position = $Position2D2.global_position
-							bullet.set_movement(mouse_pos.x - global_position.x - $Position2D.global_position.x + $Position2D2.global_position.x, mouse_pos.y - global_position.y - $Position2D.global_position.y + $Position2D2.global_position.y)
+							bullet.set_movement(mouse_pos - global_position - $Position2D.global_position + $Position2D2.global_position)
+				weapon.triple:
+					normal_weapons_support()
+					for x in range(3):
+						var bullet : Area2D = BULLET.instance()
+						get_parent().add_child(bullet)
+						if x == 0:
+							bullet.global_position = $Position2D.global_position
+							bullet.set_movement(mouse_pos - global_position)
+						elif x == 1:
+							bullet.global_position = $Position2D2.global_position
+							bullet.set_movement(mouse_pos - global_position - $Position2D.global_position + $Position2D2.global_position)
+						else:
+							bullet.global_position = $Position2D3.global_position
+							bullet.set_movement(mouse_pos - global_position - $Position2D.global_position + $Position2D3.global_position)
+				weapon.wizard:
+					normal_weapons_support()
+					for x in range(2):
+						var bullet : Area2D = BULLET.instance()
+						get_parent().add_child(bullet)
+						bullet.global_position = global_position
+						if x == 0:
+							bullet.set_movement($spread2.global_position - global_position)
+						else:
+							bullet.set_movement($spread3.global_position - global_position)
+				weapon.triple_spread:
+					normal_weapons_support()
+					for x in range(3):
+						var bullet : Area2D = BULLET.instance()
+						get_parent().add_child(bullet)
+						bullet.global_position = global_position
+						if x == 0:
+							bullet.set_movement($spread2.global_position - global_position)
+						elif x == 1:
+							bullet.set_movement($spread3.global_position - global_position)
+						else:
+							bullet.set_movement($spread1.global_position - global_position)
+				weapon.quad_spread:
+					normal_weapons_support()
+					for x in range(4):
+						var bullet : Area2D = BULLET.instance()
+						get_parent().add_child(bullet)
+						bullet.global_position = global_position
+						if x == 0:
+							bullet.set_movement($spread2.global_position - global_position)
+						elif x == 1:
+							bullet.set_movement($spread3.global_position - global_position)
+						elif x == 2:
+							bullet.set_movement($spread4.global_position - global_position)
+						else:
+							bullet.set_movement($spread5.global_position - global_position)
+				weapon.pent_spread:
+					normal_weapons_support()
+					for x in range(5):
+						var bullet : Area2D = BULLET.instance()
+						get_parent().add_child(bullet)
+						bullet.global_position = global_position
+						if x == 0:
+							bullet.set_movement($spread1.global_position - global_position)
+						elif x == 1:
+							bullet.set_movement($spread2.global_position - global_position)
+						elif x == 2:
+							bullet.set_movement($spread3.global_position - global_position)
+						elif x == 3:
+							bullet.set_movement($spread4.global_position - global_position)
+						else:
+							bullet.set_movement($spread5.global_position - global_position)
+				weapon.weak:
+					fire_rate_support(0.5)
+				weapon.frequent:
+					fire_rate_support(0.1)
+				weapon.double_frequent:
+					fire_rate_support(0.05)
+				weapon.very_weak:
+					fire_rate_support(1)
 		$Camera2D.offset = Vector2(mouse_pos.x - global_position.x, mouse_pos.y - global_position.y) * 0.1
 
 #Shoot timer
@@ -95,3 +169,12 @@ func _on_AnimatedSprite_animation_finished():
 func normal_weapons_support():
 	$shootTimer.wait_time = 0.2
 	$shootTimer.start()
+
+#weapons with weird firerate
+func fire_rate_support(wait_time : float):
+	$shootTimer.wait_time = wait_time
+	$shootTimer.start()
+	var bullet : Area2D = BULLET.instance()
+	get_parent().add_child(bullet)
+	bullet.global_position = $Position2D.global_position
+	bullet.set_movement(get_global_mouse_position() - global_position)

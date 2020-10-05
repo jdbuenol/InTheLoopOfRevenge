@@ -245,6 +245,8 @@ func apply_borders():
 #This executes every frame
 func _physics_process(_delta):
 	if ! dead:
+		if Input.is_action_just_pressed("pause"):
+			pass
 		$cursor.global_position = get_global_mouse_position()
 		var enemy_counter : int = 0
 		for x in get_children():
@@ -293,7 +295,7 @@ func game_over():
 
 #Set a new revenge
 func revenge():
-	$player.current_weapon = randi() % 3
+	$player.current_weapon = randi() % 12
 	var current_revenge : Control = REVENGE.instance()
 	add_child(current_revenge)
 	
