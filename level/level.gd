@@ -6,20 +6,47 @@ const MAX_ROOM_DIMENSION : int = 11
 const NUM_ROOMS : int = 6
 const TILE_SIZE : int = 64
 
+const GAME_OVER : PackedScene = preload("res://mainTitle/GameOver.tscn")
 const WALL : PackedScene = preload("res://environment/wall.tscn")
 const ENEMY : PackedScene = preload("res://enemy/enemy.tscn")
+const REVENGE : PackedScene = preload("res://mainTitle/revenge.tscn")
 
 enum Tile {ground, corner1, corner2, corner3, corner4, wall_down, wall_left, wall_right, wall_up, wall}
 
+var current_avenger : String = ""
+var current_victim : String = ""
+var current_dead : String = ""
+
+var names : Array = ["Antonio", "Jose", "Manuel", "Francisco", "David", "Juan", "Javier", "Daniel", "Diego", "Carlos",
+"Jesus", "Alejandro", "Donald", "Miguel", "Adrian", "Enrique", "Ruben", "Vicente", "Mickey", "Zed", "Cain", "Lazaro", "Samson",
+"Edmund", "Ismael", "Abraham", "Alex", "Cesar", "Julio", "Xavier", "Albert", "Dross", "Felix", "Ike", "Hector", "Aitor",
+"Noah", "Jacob", "Mason", "Liam", "William", "Ethan", "Michael", "Alexander", "James", "Elijah", "Aiden", "Jayden", "Benjamin",
+"Matthew", "Logan", "Joseph", "Anthony", "Jackson", "Lucas", "Joshua", "Andrew", "Gabriel", "Samuel", "Isaac", "Carter", "Luke",
+"Anakin", "Nathan", "Caleb", "Owen", "Christian", "Henry", "Oliver", "Wyatt", "Jonathan", "Landon", "Jack", "Sebastian",
+"Hunter", "Isaiah", "Julian", "Levi", "Aaron", "Eli", "Brayden", "Nicholas", "Connor", "Charles", "Thomas", "Evan", "Jeremiah",
+"Gavin", "Cameron", "Jordan", "Jaxon", "Angel", "Tyler", "Robert", "Austin", "Grayson", "Josiah", "Brandon", "Colton", "Dominic",
+"Kevin", "Zachary", "Chase", "Will", "Maxwell", "Ian", "Ayden", "Adam", "Parker", "Peter", "Cooper", "Justin", "Dipper", "Nolan",
+"Jace", "Lincoln", "Bentley", "Blake", "Easton", "Nathaniel", "Asher", "Mateo", "Tristan", "Bryson", "Kayden", "Brody"]
+
+var relations : Array = ["father", "son", "cousin", "baker", "uncle", "grandpa", "grandson", "lawyer", "chef", "friend", "acupuncturist",
+"watchman", "nurse", "surgeon", "dentist", "babysitter", "screenwriter", "photographer", "accountant", "bricklayer", "cashier",
+"clown", "counselor", "dancer", "cook", "dustman", "hunter", "librarian", "painter", "pharmacist", "postman", "researcher",
+"sailor", "taxi driver", "vet", "window cleaner", "salesman"]
+
+var dead : bool = false
 var music : Array = [preload("res://assets/music/0.wav"), preload("res://assets/music/1.wav"), preload("res://assets/music/2.wav"),
 preload("res://assets/music/3.wav"), preload("res://assets/music/4.wav"), preload("res://assets/music/5.wav"), preload("res://assets/music/6.wav"), preload("res://assets/music/7.wav")]
 var current_level : int = 0
 var rooms : Array = []
 var min_enemies : int = 1
 
+var score : int = 0
+var revenges : int = 0
+
 #this executes at the start of the scene
 func _ready():
 	randomize()
+	revenge()
 	$cursor.playing = true
 	build_level()
 
@@ -35,9 +62,6 @@ func build_level():
 			x.modulate = Color(r, g, b)
 	$AudioStreamPlayer.stream = music[randi() % music.size()]
 	$AudioStreamPlayer.play()
-	$CanvasLayer/Button2.visible = false
-	$CanvasLayer/ColorRect.visible = true
-	$CanvasLayer/Label.visible = true
 	for x in get_children():
 		if x is TileMap:
 			x.clear()
@@ -220,17 +244,19 @@ func apply_borders():
 
 #This executes every frame
 func _physics_process(_delta):
-	$cursor.global_position = get_global_mouse_position()
-	var enemy_counter : int = 0
-	for x in get_children():
-		if "enemy" in x.name and ! x.dead:
-			enemy_counter += 1
-			x.velocity = get_movement_intention(x) * x.speed
-	$CanvasLayer/Label.text = str(enemy_counter) + (" enemy left." if enemy_counter == 1 else " enemies left.")
-	if enemy_counter == 0:
-		$CanvasLayer/Button2.visible = true
-		$CanvasLayer/ColorRect.visible = false
-		$CanvasLayer/Label.visible = false
+	if ! dead:
+		$cursor.global_position = get_global_mouse_position()
+		var enemy_counter : int = 0
+		for x in get_children():
+			if "enemy" in x.name and ! x.dead:
+				enemy_counter += 1
+				x.velocity = get_movement_intention(x) * x.speed
+		$CanvasLayer/Label.text = str(enemy_counter) + (" enemy left." if enemy_counter == 1 else " enemies left.")
+		if enemy_counter == 0:
+			revenges += 1
+			min_enemies += 1
+			revenge()
+			build_level()
 
 #This function gets the movement intention of an enemy
 func get_movement_intention(enemy : KinematicBody2D) -> Vector2:
@@ -255,11 +281,33 @@ func place_enemies():
 			var enemy_y : int = int(spawn_room.position.y + 1 + randi() % int(spawn_room.size.y - 2))
 			enemy.global_position = Vector2(enemy_x, enemy_y) * TILE_SIZE
 
-#Build another level
-func _on_Button2_pressed():
-	min_enemies += 1
-	build_level()
-
 #Replay the song
 func _on_AudioStreamPlayer_finished():
 	$AudioStreamPlayer.play()
+
+#This executes when the player die
+func game_over():
+	dead = true
+	$cursor.queue_free()
+	add_child(GAME_OVER.instance())
+
+#Set a new revenge
+func revenge():
+	var current_revenge : Control = REVENGE.instance()
+	add_child(current_revenge)
+	
+	if current_victim == "":
+		current_avenger = names[randi() % names.size()]
+		current_dead = names[randi() % names.size()]
+		current_victim = names[randi() % names.size()]
+	else:
+		current_dead = current_victim
+		current_victim = current_avenger
+		current_avenger = names[randi() % names.size()]
+	current_revenge.get_node("CanvasLayer/Label").text = "You are " + current_avenger + "\n" + current_victim + " killed " + current_dead + ", your "+ relations[randi() % relations.size()] +".\nTake revenge of him!"
+	$CanvasLayer/ven.text = "Kill " + current_victim + " and his band"
+
+#increase the score in one
+func up_score():
+	score += 1
+	$CanvasLayer/score.text = "Score = " + str(score)

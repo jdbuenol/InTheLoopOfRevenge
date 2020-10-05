@@ -2,6 +2,9 @@ extends Control
 
 var current_screen : bool = true
 
+const CREDITS : PackedScene = preload("res://mainTitle/Credits.tscn")
+const SELECT : PackedScene = preload("res://SoundFX/select.tscn")
+
 #This executes at the start of the scene
 func _ready():
 	$RichTextLabel.visible = true
@@ -40,7 +43,9 @@ func _physics_process(_delta):
 		if Input.is_action_just_pressed("ui_cancel"):
 			get_tree().quit()
 		if Input.is_action_just_pressed("credits"):
+			add_child(SELECT.instance())
 			current_screen = false
+			add_child(CREDITS.instance())
 
 #Replay the song
 func _on_AudioStreamPlayer_finished():

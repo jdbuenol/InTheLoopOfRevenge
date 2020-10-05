@@ -33,7 +33,7 @@ tracks/1/keys = {
 "values": [ Vector2( -310.135, -664.416 ), Vector2( 493.204, 281.1 ) ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 resource_name = "intro2"
 length = 0.5
 tracks/0/type = "value"
@@ -61,7 +61,7 @@ tracks/1/keys = {
 "values": [ Vector2( -945.853, -593.781 ), Vector2( 493.105, 263.186 ) ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=3]
 resource_name = "intro3"
 length = 0.5
 tracks/0/type = "value"
@@ -89,7 +89,7 @@ tracks/1/keys = {
 "values": [ Vector2( -1703.38, -724.814 ), Vector2( 482.95, 253.99 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=4]
 resource_name = "intro4"
 length = 0.5
 tracks/0/type = "value"
@@ -117,7 +117,7 @@ tracks/1/keys = {
 "values": [ Vector2( -568.037, -712.241 ), Vector2( 491.493, 266.563 ) ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=5]
 resource_name = "intro5"
 tracks/0/type = "value"
 tracks/0/path = NodePath("RichTextLabel5:rect_scale")
@@ -144,7 +144,7 @@ tracks/1/keys = {
 "values": [ Vector2( -2123.41, -405.366 ), Vector2( 421.278, 259.121 ) ]
 }
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=6]
 font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=7]
@@ -202,10 +202,10 @@ __meta__ = {
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/intro = SubResource( 1 )
-anims/intro2 = SubResource( 3 )
-anims/intro3 = SubResource( 4 )
-anims/intro4 = SubResource( 5 )
-anims/intro5 = SubResource( 6 )
+anims/intro2 = SubResource( 2 )
+anims/intro3 = SubResource( 3 )
+anims/intro4 = SubResource( 4 )
+anims/intro5 = SubResource( 5 )
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 visible = false
@@ -214,7 +214,7 @@ margin_top = -475.313
 margin_right = -90.4673
 margin_bottom = -432.313
 rect_scale = Vector2( 72.2, 72.2 )
-custom_fonts/normal_font = SubResource( 2 )
+custom_fonts/normal_font = SubResource( 6 )
 custom_colors/default_color = Color( 0.576471, 0.262745, 0.317647, 1 )
 bbcode_enabled = true
 bbcode_text = "[wave]IN[/wave]"
@@ -230,7 +230,7 @@ margin_left = 430.808
 margin_top = 255.329
 margin_right = 489.808
 margin_bottom = 298.329
-custom_fonts/normal_font = SubResource( 2 )
+custom_fonts/normal_font = SubResource( 6 )
 custom_colors/default_color = Color( 0.576471, 0.262745, 0.317647, 1 )
 bbcode_enabled = true
 bbcode_text = "[wave]THE[/wave]"
@@ -246,7 +246,7 @@ margin_left = 482.95
 margin_top = 253.99
 margin_right = 541.95
 margin_bottom = 296.99
-custom_fonts/normal_font = SubResource( 2 )
+custom_fonts/normal_font = SubResource( 6 )
 custom_colors/default_color = Color( 0.576471, 0.262745, 0.317647, 1 )
 bbcode_enabled = true
 bbcode_text = "[wave]LOOP"
@@ -262,7 +262,7 @@ margin_left = 491.493
 margin_top = 266.563
 margin_right = 550.493
 margin_bottom = 309.563
-custom_fonts/normal_font = SubResource( 2 )
+custom_fonts/normal_font = SubResource( 6 )
 custom_colors/default_color = Color( 0.576471, 0.262745, 0.317647, 1 )
 bbcode_enabled = true
 bbcode_text = "[wave]OF"
@@ -278,7 +278,7 @@ margin_left = 421.278
 margin_top = 259.121
 margin_right = 507.278
 margin_bottom = 302.121
-custom_fonts/normal_font = SubResource( 2 )
+custom_fonts/normal_font = SubResource( 6 )
 custom_colors/default_color = Color( 0.576471, 0.262745, 0.317647, 1 )
 bbcode_enabled = true
 bbcode_text = "[wave]REVENGE"
@@ -295,7 +295,7 @@ margin_top = -7.0
 margin_right = 439.0
 margin_bottom = 13.0
 rect_scale = Vector2( 5, 5 )
-custom_fonts/normal_font = SubResource( 2 )
+custom_fonts/normal_font = SubResource( 6 )
 custom_colors/default_color = Color( 0.576471, 0.262745, 0.317647, 1 )
 bbcode_enabled = true
 bbcode_text = "[wave]IN"
@@ -312,7 +312,7 @@ margin_top = 61.9474
 margin_right = 491.147
 margin_bottom = 81.9474
 rect_scale = Vector2( 5, 5 )
-custom_fonts/normal_font = SubResource( 2 )
+custom_fonts/normal_font = SubResource( 6 )
 custom_colors/default_color = Color( 0.576471, 0.262745, 0.317647, 1 )
 bbcode_enabled = true
 bbcode_text = "[wave]THE"
@@ -329,7 +329,7 @@ margin_top = 129.509
 margin_right = 350.936
 margin_bottom = 149.509
 rect_scale = Vector2( 5, 5 )
-custom_fonts/normal_font = SubResource( 2 )
+custom_fonts/normal_font = SubResource( 6 )
 custom_colors/default_color = Color( 0.576471, 0.262745, 0.317647, 1 )
 bbcode_enabled = true
 bbcode_text = "[wave]LOOP"
@@ -346,7 +346,7 @@ margin_top = 190.939
 margin_right = 539.722
 margin_bottom = 210.939
 rect_scale = Vector2( 5, 5 )
-custom_fonts/normal_font = SubResource( 2 )
+custom_fonts/normal_font = SubResource( 6 )
 custom_colors/default_color = Color( 0.576471, 0.262745, 0.317647, 1 )
 bbcode_enabled = true
 bbcode_text = "[wave]OF"
@@ -363,7 +363,7 @@ margin_top = 268.282
 margin_right = 379.078
 margin_bottom = 288.282
 rect_scale = Vector2( 5, 5 )
-custom_fonts/normal_font = SubResource( 2 )
+custom_fonts/normal_font = SubResource( 6 )
 custom_colors/default_color = Color( 0.576471, 0.262745, 0.317647, 1 )
 bbcode_enabled = true
 bbcode_text = "[wave]REVENGE"

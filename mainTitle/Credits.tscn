@@ -1,0 +1,59 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/fonts/BlackOpsOne-Regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://mainTitle/Credits.gd" type="Script" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 1 )
+
+[node name="Credits" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.701961, 0.364706, 0.239216, 1 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = 12.1806
+margin_top = 7.40079
+margin_right = 1005.18
+margin_bottom = 220.401
+rect_scale = Vector2( 1.5, 1.5 )
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.576471, 0.262745, 0.317647, 1 )
+text = "Made by: JDBUENOL
+using: Godot Engine
+
+Font: Black Ops One
+
+Splashscreen by: Team Transmogrify
+
+Additional software: BFXR, Pixelorama, BeepBox, 
+autotracker-bottomup (by Ben \"GreaseMonkey\" Russell)"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+margin_left = 241.722
+margin_top = 495.794
+margin_right = 459.722
+margin_bottom = 520.794
+rect_scale = Vector2( 3, 3 )
+custom_fonts/normal_font = SubResource( 2 )
+custom_colors/default_color = Color( 0.952941, 0.686275, 0.352941, 1 )
+bbcode_enabled = true
+bbcode_text = "[wave]Press C to get back"
+text = "Press C to get back"
+__meta__ = {
+"_edit_use_anchors_": false
+}

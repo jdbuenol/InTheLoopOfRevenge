@@ -6,6 +6,7 @@ var dead : bool = false
 
 const BULLET : PackedScene = preload("res://player/bullet.tscn")
 const LASER : PackedScene = preload("res://SoundFX/laser.tscn")
+const DEATH : PackedScene = preload("res://SoundFX/death.tscn")
 
 const SPEED : int = 500
 
@@ -55,4 +56,10 @@ func death():
 	$shootTimer.queue_free()
 	dead = true
 	z_index = 0
+	get_parent().add_child(DEATH.instance())
 	$AnimatedSprite.play("death")
+
+#Game Over
+func _on_AnimatedSprite_animation_finished():
+	if $AnimatedSprite.animation == "death":
+		get_parent().game_over()
