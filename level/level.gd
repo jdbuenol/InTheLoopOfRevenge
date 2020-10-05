@@ -293,6 +293,7 @@ func game_over():
 
 #Set a new revenge
 func revenge():
+	$player.current_weapon = randi() % 3
 	var current_revenge : Control = REVENGE.instance()
 	add_child(current_revenge)
 	

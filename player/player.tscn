@@ -58,6 +58,12 @@ limit_bottom = 3100
 [node name="Position2D" type="Position2D" parent="."]
 position = Vector2( 2.53666, -7.84184 )
 
+[node name="Position2D2" type="Position2D" parent="."]
+position = Vector2( 0, -7.84184 )
+
+[node name="Position2D3" type="Position2D" parent="."]
+position = Vector2( 5.95821, -7.84184 )
+
 [node name="shootTimer" type="Timer" parent="."]
 wait_time = 0.2
 one_shot = true
